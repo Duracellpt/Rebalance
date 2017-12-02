@@ -122,7 +122,16 @@ Script.prototype.append_table = function () {
                 + '<td><span class="orders">0</span></td>'
                 + '</tr>';
     });
-
+	
+	table = table
+			+ '<tr>'
+			+ '<td></td>'
+			+ '<td><span class ="spdesir">0</span></td>'
+			+ '<td></td>'
+			+ '<td></td>'
+			+ '<td></td>'
+			+ '</tr>';
+    
     table = table
             + '</tbody>'
             + '</table>'
@@ -257,6 +266,14 @@ Script.prototype.read_pdesir = function () {
     return pdesir;
 };
 
+Script.prototype.sum_pdesir=function(pdesir){
+	
+	// Sum all desired proportions
+	return pdesir.reduce(function(a, b) {
+        return a + b;
+    });
+};
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Script.prototype.write_orders = function (orders) {
@@ -284,6 +301,13 @@ Script.prototype.write_pfinal = function (pfinal) {
     $('.pfinal').each(function (i) {
         $(this).text(pfinal[i].toFixed(1));
     });
+};
+
+Script.prototype.write_spdesi= function(spdesi) {
+	
+	// Write sum desired proportions
+	
+	$('.spdesir').text(spdesi.toFixed(1));
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -377,6 +401,7 @@ Script.prototype.setup_logic = function () {
         var portfl;
         var rnfrcm;
         var totalm;
+        var spdesi;
 
         var piniti = [];
         var pdesir = [];
@@ -402,12 +427,14 @@ Script.prototype.setup_logic = function () {
         piniti = self.calculate_piniti(values, amount, portfl);
         orders = self.calculate_orders(pdesir, totalm, values, amount);
         pfinal = self.calculate_pfinal(orders, totalm, values, amount);
+        spdesi = self.sum_pdesir(pdesir);
 
         // Update interface
 
         self.write_piniti(piniti);
         self.write_orders(orders);
         self.write_pfinal(pfinal);
+        self.write_spdesi(spdesi);
     });
 };
 
