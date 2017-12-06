@@ -124,13 +124,13 @@ Script.prototype.append_table = function () {
     });
 	
 	table = table
-			+ '<tr>'
-			+ '<td></td>'
-			+ '<td><span class ="spdesir">0</span></td>'
-			+ '<td></td>'
-			+ '<td></td>'
-			+ '<td></td>'
-			+ '</tr>';
+		+ '<tr>'
+		+ '<td></td>'
+		+ '<td><span class ="spdesir">0</span></td>'
+		+ '<td></td>'
+		+ '<td></td>'
+		+ '<td></td>'
+		+ '</tr>';
     
     table = table
             + '</tbody>'
